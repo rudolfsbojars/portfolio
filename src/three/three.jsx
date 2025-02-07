@@ -2,29 +2,51 @@ import React from "react";
 import * as THREE from "three";
 import "../three/three.css";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 var scene;
 var camera;
 var renderer;
 var controls;
+var boxMaterial;
 
 initEniroment();
 
-const boxGeometry = new THREE.SphereGeometry(20, 64, 64);
-const boxMaterial = new THREE.MeshStandardMaterial({
-  color: 0xe6e6e6,
-  metalness: 0.5,
-  roughness: 0.1,
+const loader = new GLTFLoader();
+
+loader.load("/cloud.glb", (gltf) => {
+  const model = gltf.scene;
+  scene.add(model);
 });
-const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-scene.add(boxMesh);
+
+const textureLoader = new RGBELoader();
+let envMap;
+
+textureLoader.load("/envmapstreet.hdr", (texture) => {
+  texture.mapping = THREE.EquirectangularReflectionMapping;
+  envMap = texture;
+
+  const boxGeometry = new THREE.SphereGeometry(20, 64, 128);
+  boxMaterial = new THREE.MeshStandardMaterial({
+    //color: 0xffffff,
+    metalness: 1.2,
+    roughness: 0,
+    envMap: envMap,
+    envMapIntensity: 0.05,
+  });
+
+  const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+  scene.add(boxMesh);
+});
+
+const gridHelper = new THREE.GridHelper(200, 50);
+scene.add(gridHelper);
 
 animate();
 
 function animate() {
   requestAnimationFrame(animate);
-  boxMesh.rotation.x += 0.01;
-  boxMesh.rotation.y += 0.01;
   renderer.render(scene, camera);
 }
 
@@ -57,7 +79,7 @@ function initEniroment() {
   camera.position.x = 50;
   renderer.render(scene, camera);
 
-  const pointLight = new THREE.PointLight(0xffffff, 200, 50);
+  const pointLight = new THREE.PointLight(0xffffff, 50, 50);
   pointLight.position.set(0, 40, 0);
   const ambientLight = new THREE.AmbientLight(0x404040, 3);
 
