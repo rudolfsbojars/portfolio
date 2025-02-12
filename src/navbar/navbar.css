@@ -1,25 +1,41 @@
 nav {
-  background-color: #333;
-  color: white;
-  padding: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10px 20px;
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 1000;
+  font-family: "Andale Mono", monospace;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.logo img {
+  margin-left: 40px;
+  height: 60px;
 }
 
 ul {
   list-style: none;
   padding: 0;
+  margin-right: 60px;
+  display: flex;
 }
 
 li {
-  display: inline;
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 a {
   color: white;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 32px;
 }

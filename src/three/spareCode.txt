@@ -1,0 +1,140 @@
+/*
+  geometry2 = new THREE.CapsuleGeometry(6, 12, 10, 20);
+  const capsule = new THREE.Mesh(geometry2, boxMaterial);
+  capsule.castShadow = true;
+  capsule.receiveShadow = true;
+  scene.add(capsule);
+
+  count = geometry2.attributes.position.count;
+
+  positionClone = JSON.parse(
+    JSON.stringify(geometry2.attributes.position.array)
+  );
+
+  normalClone = JSON.parse(JSON.stringify(geometry2.attributes.position.array));
+  const now = Date.now() / 200;
+  for (let i = 0; i < count; i++) {
+    const uX = geometry2.attributes.uv.getX(i) * Math.PI * 8;
+    const uY = geometry2.attributes.uv.getY(i) * Math.PI * 8;
+
+    const xangle = uX + now;
+    const xsin = Math.sin(xangle) * 0.2;
+    const yangle = uY + now;
+    const ycos = Math.cos(yangle) * 0.2;
+
+    const ix = i * 3;
+    const iy = i * 3 + 1;
+    const iz = i * 3 + 2;
+
+    geometry2.attributes.position.setX(
+      i,
+      positionClone[ix] + normalClone[ix] * (xsin + ycos)
+    );
+    geometry2.attributes.position.setY(
+      i,
+      positionClone[iy] + normalClone[iy] * (xsin + ycos)
+    );
+    geometry2.attributes.position.setZ(
+      i,
+      positionClone[iz] + normalClone[iz] * (xsin + ycos)
+    );
+
+    geometry2.computeVertexNormals();
+    geometry2.attributes.position.needsUpdate = true;
+  }
+  });
+
+    const barGeometry = new THREE.BoxGeometry(1000, 2, 2);
+  const barMaterial = new THREE.MeshStandardMaterial({
+    //color: 0xb3b3b3,
+  });
+
+  const lightBar = new THREE.Mesh(barGeometry, barMaterial);
+  scene.add(lightBar);
+  lightBar.castShadow = true;
+
+  const light = new THREE.RectAreaLight(0xb3b3b3, 10000, 1000, 2);
+  //lightBar.add(light);
+
+  lightBar.position.y = 35;
+  lightBar.rotation.x = Math.PI / 2 + Math.PI;
+
+  const raycaster = new THREE.Raycaster();
+const clickMouse = new THREE.Vector2();
+const vector3 = new THREE.Vector3();
+const MAX_CLICK_DISTANCE = 10;
+
+window.addEventListener("click", (event) => {
+  clickMouse.x = (event.clientX / Window.innerWidth) * 2 + 1;
+  clickMouse.y = (event.clientY / Window.innerHeight) * 2 + 1;
+  raycaster.setFromCamera(clickMouse, camera);
+  const found = raycaster.intersectObjects(scene.children);
+  if (found.length > 0 && found[0].object.geometry) {
+    const mesh = found[0].object;
+    mesh.position.x = 20;
+
+    geometry.computeVertexNormals();
+    geometry.attributes.position.needsUpdate = true;
+  }
+});
+
+const glbLoader = new GLTFLoader();
+
+
+const textureLoader = new RGBELoader();
+let envMap;
+
+textureLoader.load("/envmapstreet.hdr", (texture) => {
+  texture.mapping = THREE.EquirectangularReflectionMapping;
+  envMap = texture;
+    */
+
+/*
+  const sphereGeo = new THREE.SphereGeometry(10, 64, 64);
+  const sphereMat = new THREE.MeshPhysicalMaterial(metallicMaterial);
+  for (let i = 0; i < 200; i++) {
+    sphereMesh[i] = new THREE.Mesh(sphereGeo, sphereMat);
+    scene.add(sphereMesh[i]);
+    sphereMesh[i].position.x = 
+    sphereMesh[i].position.y = Math.floor(Math.random() * 200 - 100);
+    sphereMesh[i].position.z = Math.floor(Math.random() * 200 - 100);
+  }
+    */
+
+/*
+
+  new GLTFLoader().load("./rock.glb", function (glb) {
+    const rockGeometry = glbSceneToGeometry(glb.scene);
+    for (let i = 0; i < 50; i++) {
+      rock[i] = new THREE.Mesh(rockGeometry, metallicMaterial);
+      rock[i].scale.set(7, 7, 7);
+      scene.add(rock[i]);
+      rock[i].position.x = Math.floor(Math.random() * 200 - 100);
+      rock[i].position.y = Math.floor(Math.random() * 200 - 100);
+      rock[i].position.z = Math.floor(Math.random() * 200 - 100);
+    }
+  });
+
+  new GLTFLoader().load("./painting.glb", function (glb) {
+    const paintingGeometry = glbSceneToGeometry(glb.scene);
+    for (let i = 0; i < 50; i++) {
+      paint[i] = new THREE.Mesh(paintingGeometry, metallicMaterial);
+      paint[i].scale.set(10, 10, 10);
+      scene.add(paint[i]);
+      paint[i].position.x = Math.floor(Math.random() * 200 - 100);
+      paint[i].position.y = Math.floor(Math.random() * 200 - 100);
+      paint[i].position.z = Math.floor(Math.random() * 200 - 100);
+    }
+  });
+
+  new GLTFLoader().load("./lion.glb", function (glb) {
+    const lionGeometry = glbSceneToGeometry(glb.scene);
+    for (let i = 0; i < 50; i++) {
+      lion[i] = new THREE.Mesh(lionGeometry, metallicMaterial);
+      scene.add(lion[i]);
+      lion[i].position.x = Math.floor(Math.random() * 200 - 100);
+      lion[i].position.y = Math.floor(Math.random() * 200 - 100);
+      lion[i].position.z = Math.floor(Math.random() * 200 - 100);
+    }
+  });
+  */

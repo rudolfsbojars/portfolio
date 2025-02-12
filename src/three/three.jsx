@@ -5,20 +5,19 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { FlakesTexture } from "three/examples/jsm/Addons.js";
-import { MarchingCubes } from "three/examples/jsm/objects/MarchingCubes.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 var scene;
 var camera;
 var renderer;
 var controls;
-var sphereMesh;
-var effect;
+var head = [];
 
 initEniroment();
 
 let envMapLoader = new THREE.PMREMGenerator(renderer);
 
-new RGBELoader().setPath("../").load("envmapstreet.hdr", function (hdrmap) {
+new RGBELoader().setPath("../").load("hdrimage.hdr", function (hdrmap) {
   let envMap = envMapLoader.fromCubemap(hdrmap);
   let texture = new THREE.CanvasTexture(new FlakesTexture());
   texture.wrapS = THREE.RepeatWrapping;
@@ -26,40 +25,46 @@ new RGBELoader().setPath("../").load("envmapstreet.hdr", function (hdrmap) {
   texture.repeat.x = 10;
   texture.repeat.y = 6;
 
-  const sphereMaterial = {
-    clearcoat: 1.0,
-    clearcoatRoughness: 0.1,
+  const metallicMaterial = new THREE.MeshPhysicalMaterial({
+    clearcoat: 1,
+    clearcoatRoughness: 0.6,
     metalness: 0.9,
-    roughness: 0.5,
-    color: 0x1cdfae,
+    roughness: 0.1,
+    color: 0xa4a4a4,
     normalMap: texture,
     normalScale: new THREE.Vector2(0.15, 0.15),
     envMap: envMap.texture,
-  };
+  });
 
-  const sphereGeo = new THREE.SphereGeometry(100, 64, 64);
-  const sphereMat = new THREE.MeshPhysicalMaterial(sphereMaterial);
-  sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
-  scene.add(sphereMesh);
-
-  const resolution = 50;
-  effect = new MarchingCubes(resolution, sphereMat, true, true, 100000);
-  scene.add(effect);
-  effect.addBall(0.3, 0.3, 0.3, 0.5);
-  effect.addBall(-0.3, -0.3, -0.3, 0.5);
-  effect.addBall(0, 0, 0, 0.5);
+  new GLTFLoader().load("./head.glb", function (glb) {
+    const headGeo = glbSceneToGeometry(glb.scene);
+    for (let i = 0; i < 25; i++) {
+      head[i] = new THREE.Mesh(headGeo, metallicMaterial);
+      head[i].scale.set(0.05, 0.05, 0.05);
+      scene.add(head[i]);
+      head[i].position.x = Math.floor(Math.random() * 200 - 100);
+      head[i].position.y = Math.floor(Math.random() * 120 - 60);
+      head[i].position.z = Math.floor(Math.random() * 50 - 25);
+      head[i].rotation.x = Math.PI / (1 + Math.floor(Math.random() * 20));
+      head[i].rotation.y = Math.PI / (1 + Math.floor(Math.random() * 20));
+      head[i].rotation.z = Math.PI / (1 + Math.floor(Math.random() * 20));
+    }
+  });
 });
-
-const gridHelper = new THREE.GridHelper(1000, 200);
-//scene.add(gridHelper);
 
 animate();
 
 function animate() {
   requestAnimationFrame(animate);
-  //sphereMesh.rotation.x += 0.0005;
-  //sphereMesh.rotation.y += 0.003;
-  effect.update();
+  let time = performance.now() * 0.0005;
+
+  head.forEach((mesh, i) => {
+    let offset = i * 0.005;
+    mesh.rotation.x += 0.0005;
+    mesh.rotation.y += 0.0007;
+
+    mesh.position.y += Math.sin(time + i) * 0.02;
+  });
   controls.update();
   renderer.render(scene, camera);
 }
@@ -72,9 +77,29 @@ window.addEventListener("resize", () => {
   renderer.setSize(width, height);
 });
 
+window.addEventListener("scroll", () => {
+  let scrollFactor =
+    window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  scrollFactor = Math.min(Math.max(scrollFactor, 0), 1);
+
+  scene.background = new THREE.Color().lerpColors(
+    new THREE.Color(0x1e1e1e),
+    new THREE.Color(0xdddddd),
+    scrollFactor
+  );
+
+  head.forEach((mesh) => {
+    mesh.material.wireframe = scrollFactor > 0.5;
+    mesh.material.roughness = 0.1 + scrollFactor * 0.5;
+    mesh.material.metalness = 0.9 - scrollFactor * 0.8;
+    mesh.material.opacity = 1 - scrollFactor * 0.2;
+    mesh.material.transparent = scrollFactor > 0.8;
+  });
+});
+
 function initEniroment() {
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0d0d0d);
+  scene.background = new THREE.Color(0x000000);
   camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -82,7 +107,7 @@ function initEniroment() {
     1000
   );
 
-  camera.position.set(100, 100, 100);
+  camera.position.set(0, 0, 60);
 
   renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector("#bg"),
@@ -97,7 +122,7 @@ function initEniroment() {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.25;
 
-  const pointLight = new THREE.PointLight(0xffffff, 100000);
+  const pointLight = new THREE.PointLight(0xffffff, 10000);
   pointLight.position.set(200, 400, 200);
   const ambientLight = new THREE.AmbientLight();
 
@@ -148,107 +173,3 @@ function addUVs(geometry) {
 
   geometry.setAttribute("uv", new THREE.BufferAttribute(uvs, 2));
 }
-
-/*
-  geometry2 = new THREE.CapsuleGeometry(6, 12, 10, 20);
-  const capsule = new THREE.Mesh(geometry2, boxMaterial);
-  capsule.castShadow = true;
-  capsule.receiveShadow = true;
-  scene.add(capsule);
-
-  count = geometry2.attributes.position.count;
-
-  positionClone = JSON.parse(
-    JSON.stringify(geometry2.attributes.position.array)
-  );
-
-  normalClone = JSON.parse(JSON.stringify(geometry2.attributes.position.array));
-  const now = Date.now() / 200;
-  for (let i = 0; i < count; i++) {
-    const uX = geometry2.attributes.uv.getX(i) * Math.PI * 8;
-    const uY = geometry2.attributes.uv.getY(i) * Math.PI * 8;
-
-    const xangle = uX + now;
-    const xsin = Math.sin(xangle) * 0.2;
-    const yangle = uY + now;
-    const ycos = Math.cos(yangle) * 0.2;
-
-    const ix = i * 3;
-    const iy = i * 3 + 1;
-    const iz = i * 3 + 2;
-
-    geometry2.attributes.position.setX(
-      i,
-      positionClone[ix] + normalClone[ix] * (xsin + ycos)
-    );
-    geometry2.attributes.position.setY(
-      i,
-      positionClone[iy] + normalClone[iy] * (xsin + ycos)
-    );
-    geometry2.attributes.position.setZ(
-      i,
-      positionClone[iz] + normalClone[iz] * (xsin + ycos)
-    );
-
-    geometry2.computeVertexNormals();
-    geometry2.attributes.position.needsUpdate = true;
-  }
-
-    glbLoader.load("./kawashaki_ninja_h2.glb", function (glb) {
-    const cloudGeoemetry = glbSceneToGeometry(glb.scene);
-    const cloudMaterial = new THREE.MeshStandardMaterial({
-      color: 0xb3b3b3,
-      metalness: 1.2,
-      roughness: 0,
-      envMap: envMap,
-      envMapIntensity: 0.05,
-    });
-    const cloudMesh = new THREE.Mesh(cloudGeoemetry, cloudMaterial);
-    cloudMesh.scale.set(10, 10, 10);
-    scene.add(cloudMesh);
-  });
-
-    const barGeometry = new THREE.BoxGeometry(1000, 2, 2);
-  const barMaterial = new THREE.MeshStandardMaterial({
-    //color: 0xb3b3b3,
-  });
-
-  const lightBar = new THREE.Mesh(barGeometry, barMaterial);
-  scene.add(lightBar);
-  lightBar.castShadow = true;
-
-  const light = new THREE.RectAreaLight(0xb3b3b3, 10000, 1000, 2);
-  //lightBar.add(light);
-
-  lightBar.position.y = 35;
-  lightBar.rotation.x = Math.PI / 2 + Math.PI;
-
-  const raycaster = new THREE.Raycaster();
-const clickMouse = new THREE.Vector2();
-const vector3 = new THREE.Vector3();
-const MAX_CLICK_DISTANCE = 10;
-
-window.addEventListener("click", (event) => {
-  clickMouse.x = (event.clientX / Window.innerWidth) * 2 + 1;
-  clickMouse.y = (event.clientY / Window.innerHeight) * 2 + 1;
-  raycaster.setFromCamera(clickMouse, camera);
-  const found = raycaster.intersectObjects(scene.children);
-  if (found.length > 0 && found[0].object.geometry) {
-    const mesh = found[0].object;
-    mesh.position.x = 20;
-
-    geometry.computeVertexNormals();
-    geometry.attributes.position.needsUpdate = true;
-  }
-});
-
-const glbLoader = new GLTFLoader();
-
-
-const textureLoader = new RGBELoader();
-let envMap;
-
-textureLoader.load("/envmapstreet.hdr", (texture) => {
-  texture.mapping = THREE.EquirectangularReflectionMapping;
-  envMap = texture;
-    */
