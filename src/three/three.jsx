@@ -38,7 +38,7 @@ new RGBELoader().setPath("../").load("hdrimage.hdr", function (hdrmap) {
 
   new GLTFLoader().load("./head.glb", function (glb) {
     const headGeo = glbSceneToGeometry(glb.scene);
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 40; i++) {
       head[i] = new THREE.Mesh(headGeo, metallicMaterial);
       head[i].scale.set(0.05, 0.05, 0.05);
       scene.add(head[i]);
@@ -83,7 +83,7 @@ window.addEventListener("scroll", () => {
   scrollFactor = Math.min(Math.max(scrollFactor, 0), 1);
 
   scene.background = new THREE.Color().lerpColors(
-    new THREE.Color(0x1e1e1e),
+    new THREE.Color(0x131313),
     new THREE.Color(0xdddddd),
     scrollFactor
   );
