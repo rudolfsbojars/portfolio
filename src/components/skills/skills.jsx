@@ -20,7 +20,7 @@ export const Skills = () => {
             <p>C#</p>
           </div>
           <div className="logo-item">
-            <img src="pythonlogo.webp" alt="Python Logo" className="logo" />
+            <img src="/pythonlogo.webp" alt="Python Logo" className="logo" />
             <p>Python</p>
           </div>
         </div>
