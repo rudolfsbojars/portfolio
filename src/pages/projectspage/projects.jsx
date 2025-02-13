@@ -3,9 +3,12 @@ import "./projects.css";
 
 const Projects = () => {
   return (
-    <section>
-      <h1>My Projects</h1>
-      <p>Details of my projects will go here.</p>
+    <section className="projects-container">
+      <div className="projects-content">
+        <h1>Projects</h1>
+        <p></p>
+        <p></p>
+      </div>
     </section>
   );
 };

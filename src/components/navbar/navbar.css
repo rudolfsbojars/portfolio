@@ -1,4 +1,4 @@
-nav {
+.navbar-section nav {
   background-color: rgba(0, 0, 0, 0);
   padding: 10px 20px;
   position: fixed;
@@ -12,7 +12,7 @@ nav {
   max-width: 1400px;
 }
 
-header {
+.navbar-section header {
   display: flex;
   justify-content: center;
 }
@@ -20,26 +20,27 @@ header {
 .logo img {
   margin-left: 40px;
   height: 60px;
+  margin-top: 20px;
 }
 
-ul {
+.navbar-section ul {
   list-style: none;
   padding: 0;
   margin-right: 60px;
   display: flex;
 }
 
-li {
+.navbar-section li {
   margin-left: 20px;
 }
 
-a {
+.navbar-section a {
   color: white;
   text-decoration: none;
   font-weight: bold;
   font-size: 32px;
 }
 
-a:hover {
+.navbar-section a:hover {
   color: #007bff;
 }

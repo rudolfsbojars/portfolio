@@ -1,4 +1,51 @@
-.aboutme {
-  width: 110vw;
-  background-color: aliceblue;
+.aboutme-container {
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutme-content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 1200px;
+  text-align: left;
+}
+
+.aboutme-container h1 {
+  text-align: center;
+}
+
+.aboutme-container h3 {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.aboutme-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.aboutme-container ul li {
+  margin-bottom: 15px;
+}
+
+.download-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.aboutme-container a {
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }

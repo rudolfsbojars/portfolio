@@ -1,0 +1,15 @@
+.projects-container {
+  position: fixed;
+  top: 10%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.projects-content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 1400px;
+}
