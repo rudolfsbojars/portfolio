@@ -1,7 +1,7 @@
 import React from "react";
-import "../first/first.css";
+import "./introduction.css";
 
-export const First = () => {
+export const Introduction = () => {
   return (
     <section className="first-section">
       <h1>Hi I am Rudolfs Bojars Welcome To My Portfolio Website</h1>
@@ -10,4 +10,4 @@ export const First = () => {
   );
 };
 
-export default First;
+export default Introduction;

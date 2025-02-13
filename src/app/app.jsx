@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "../navbar/navbar.jsx";
-import Home from "../homepage/home.jsx";
-import AboutMe from "../aboutmepage/aboutme.jsx";
-import Projects from "../projectspage/projects.jsx";
-import Contact from "../contactspage/contacts.jsx";
+import Navbar from "../components/navbar/navbar";
+import Home from "../pages/homepage/home";
+import AboutMe from "../pages/aboutmepage/aboutme";
+import Projects from "../pages/projectspage/projects";
+import Contact from "../pages/contactspage/contacts";
 import "../app/app.css";
 
 export default function App() {

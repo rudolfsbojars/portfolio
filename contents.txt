@@ -1,9 +1,0 @@
-1. Worked With C#, creating projects for trading platform ATAS, and 
-   have worked with PSQL to create a restaurant information system
-2. Worked with MQL5 which is a langaige for the MeteTrader platform,
-   the language is built on C++ and i have written over 10 thousand 
-   lines of code, and created multiple projects that use API's, Tokens
-   Servers, WebSockets a lot of algorithms and math
-3. Worked with JS and React, i am currently working with three.js to 
-   create a simmilar enviroment to CAD for editing premade objects 
-   to a certain extent for CNC detailing
