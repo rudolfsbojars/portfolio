@@ -65,7 +65,7 @@ function animate() {
 
     mesh.position.y += Math.sin(time + i) * 0.02;
   });
-  controls.update();
+  //controls.update();
   renderer.render(scene, camera);
 }
 

@@ -1,15 +1,62 @@
 .projects-container {
-  position: fixed;
-  top: 10%;
-  width: 100vw;
+  margin-top: 200px;
   display: flex;
   justify-content: center;
 }
 
 .projects-content {
+  width: 80%;
   background: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  max-width: 1400px;
+  max-width: 1200px;
+}
+
+h1 {
+  margin-bottom: 40px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+.project-logo img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 30px;
+}
+
+.project-card h3 {
+  margin-top: 5px;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 1em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.download-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
 }
