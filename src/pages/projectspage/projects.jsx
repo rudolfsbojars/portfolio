@@ -41,6 +41,13 @@ const projectData = [
     downloadLink: "/assets/TickLevels.mq5",
     action: "Download",
   },
+  {
+    name: "Portfolio",
+    description:
+      " This Webpage made in three.js that uses a glb model, and other technologies like routers GitHub: ",
+    logo: "/reactlogo.png",
+    action: "View in my GitHub",
+  },
 ];
 
 const ProjectCard = ({ name, description, logo, downloadLink, action }) => {
