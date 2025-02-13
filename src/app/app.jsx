@@ -10,7 +10,7 @@ import "../app/app.css";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/portfolio/">
       <Navbar />
       <main>
         <Routes>

@@ -17,7 +17,7 @@ initEniroment();
 
 let envMapLoader = new THREE.PMREMGenerator(renderer);
 
-new RGBELoader().setPath("../").load("hdrimage.hdr", function (hdrmap) {
+new RGBELoader().load("hdrimage.hdr", function (hdrmap) {
   let envMap = envMapLoader.fromCubemap(hdrmap);
   let texture = new THREE.CanvasTexture(new FlakesTexture());
   texture.wrapS = THREE.RepeatWrapping;
@@ -36,7 +36,7 @@ new RGBELoader().setPath("../").load("hdrimage.hdr", function (hdrmap) {
     envMap: envMap.texture,
   });
 
-  new GLTFLoader().load("./head.glb", function (glb) {
+  new GLTFLoader().load("head.glb", function (glb) {
     const headGeo = glbSceneToGeometry(glb.scene);
     for (let i = 0; i < 40; i++) {
       head[i] = new THREE.Mesh(headGeo, metallicMaterial);

@@ -6,7 +6,7 @@ const projectData = [
     name: "Modeling Tool",
     description:
       "A 3D Modeling tool with limited ability, made with three.js, that connects with Fusion CAD application for proccessing and further cutting operations",
-    logo: "/reactlogo.png",
+    logo: "reactlogo.png",
     action: "In Development",
   },
   {
@@ -45,7 +45,7 @@ const projectData = [
     name: "Portfolio",
     description:
       " This Webpage made in three.js that uses a glb model, and other technologies like routers GitHub: ",
-    logo: "/reactlogo.png",
+    logo: "reactlogo.png",
     action: "View in my GitHub",
   },
 ];
