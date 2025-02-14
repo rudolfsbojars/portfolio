@@ -10,6 +10,8 @@
   align-items: center;
   justify-content: space-between;
   max-width: 1400px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 .navbar-section header {
@@ -43,4 +45,45 @@
 
 .navbar-section a:hover {
   color: #007bff;
+}
+
+.scrolled {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.menu-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  display: none;
+  color: white;
+  margin-right: 40px;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: -50px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    width: 180px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav-links.open {
+    transform: translateX(-20%);
+  }
+
+  .nav-links li {
+    padding: 20px;
+  }
 }

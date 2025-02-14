@@ -28,7 +28,7 @@ const projectData = [
   {
     name: "Expert Advisor",
     description:
-      "Automated trading system that integrates several technical analysis indicators, risk management tools, and trade management functions. Launchable with the MetaTrader5 Application.",
+      "Automated trading system that integrates several technical analysis indicators, risk management tools, and trade management functions. One of the larger projects i have made. Launchable with the MetaTrader5 Application.",
     logo: "mt5.png",
     downloadLink: "/assets/KIX_PRIME.zip",
     action: "Download",
@@ -44,8 +44,9 @@ const projectData = [
   {
     name: "Portfolio",
     description:
-      " This Webpage made in three.js that uses a glb model, and other technologies like routers GitHub: ",
+      " This Webpage made in three.js that uses a glb model, and other technologies like routers.",
     logo: "reactlogo.png",
+    downloadLink: "https://github.com/rudolfsbojars/portfolio",
     action: "View in my GitHub",
   },
 ];

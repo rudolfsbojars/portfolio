@@ -9,6 +9,9 @@ const AboutMe = () => {
       <div className="aboutme-content">
         <h1>About Me</h1>
         <p>
+          <strong>E-mail: </strong> bojars.rudolfs03@gmail.com <br />
+          <strong>Phone: </strong> +371 27866455 <br />
+          <br />
           I’m a junior programmer seeking an internship with a strong focus on
           backend development. I’m passionate about problem-solving, especially
           in areas like data structures, algorithms, and security. I enjoy
@@ -20,7 +23,7 @@ const AboutMe = () => {
         <ul>
           <li>
             <strong>Programming Languages:</strong> C, C#, JavaScript, Python,
-            React
+            Mql5
           </li>
           <li>
             <strong>Low-Level Operations:</strong> Strong foundation in C and

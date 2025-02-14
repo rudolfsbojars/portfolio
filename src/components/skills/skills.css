@@ -10,7 +10,7 @@
   text-align: center;
   padding: 50px 20px;
   max-width: 1400px;
-  width: 100%;
+  width: 80%;
 }
 
 .skills-title {
@@ -24,8 +24,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
-  margin-top: 80px;
-  margin-bottom: 300px;
+  margin-top: 70px;
 }
 
 .logo-item {
@@ -53,4 +52,38 @@
   padding: 10px;
   border-radius: 8px;
   display: inline;
+}
+
+.skills-middle {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.skills-middle h3 {
+  color: white;
+  width: 80%;
+}
+
+.skills-link {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 150px;
+}
+
+.skills-link h3 {
+  color: white;
+  width: 80%;
+}
+
+.highlighted-link {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.highlighted-link:hover {
+  text-decoration: underline;
 }
