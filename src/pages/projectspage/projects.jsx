@@ -14,7 +14,7 @@ const projectData = [
     description:
       "A video player developed in C# with features such as theme switching, subtitle loading & display, and playlist creation.",
     logo: "clogo.webp",
-    downloadLink: "/assets/MediaPlayer.exe",
+    downloadLink: "https://bunkursserver.com/PortfolioFiles/MediaPlayer.exe",
     action: "Download",
   },
   {
@@ -22,7 +22,8 @@ const projectData = [
     description:
       "A C# and PSQL-based hospitality and restaurant information system that includes features like restaurant layout visualization, order management, inventory tracking, and more. Login-admin Pass-admin",
     logo: "clogo.webp",
-    downloadLink: "/assets/Hospitality_Information_System.exe",
+    downloadLink:
+      "https://bunkursserver.com/PortfolioFiles/Hospitality_Information_System.exe",
     action: "Download",
   },
   {
@@ -30,7 +31,7 @@ const projectData = [
     description:
       "Automated trading system that integrates several technical analysis indicators, risk management tools, and trade management functions. One of the larger projects i have made. Launchable with the MetaTrader5 Application.",
     logo: "mt5.png",
-    downloadLink: "/assets/KIX_PRIME.zip",
+    downloadLink: "https://bunkursserver.com/PortfolioFiles/KIX_PRIME.zip",
     action: "Download",
   },
   {
@@ -38,7 +39,7 @@ const projectData = [
     description:
       "Indiactor that sorts and shows historical price levels and their weight. Launchable with the MetaTrader5 Application.",
     logo: "mt5.png",
-    downloadLink: "/assets/TickLevels.mq5",
+    downloadLink: "https://bunkursserver.com/PortfolioFiles/TickLevels.mq5",
     action: "Download",
   },
   {
